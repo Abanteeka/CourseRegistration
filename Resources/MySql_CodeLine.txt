@@ -1,0 +1,2 @@
+create database CourseRegistration;
+create table admin(int name,int aid,datetime login)
