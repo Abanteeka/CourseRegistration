@@ -21,9 +21,14 @@ def students(registration, name):
 
         user_option = int(input("Options: "))
         if user_option == 1:
-            course_name=
-            qry= "select * from table where course = {}".format(course_name)
-
+            course_name=input("Enter Course Name: ")
+            qry= "select * from table where course = {};".format(course_name)
+            cur.execute(qry)
+            sl = cur.fetchall()
+            c = 0
+            for i in sl:
+                for j in i:
+                    c = j
         elif user_option == 2:
             print()
         elif user_option == 3:
@@ -32,3 +37,4 @@ def students(registration, name):
             break
         else:
             print("Wrong Option!! Try Again")
+students("abc","abc")
