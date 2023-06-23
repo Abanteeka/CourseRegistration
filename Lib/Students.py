@@ -16,6 +16,16 @@ def studentsession(registration):
         print("1.search course")
         print("2.select course")
         print("3.routine")
+        print("4.Logout")
+
+        user_option = input(str("Options: "))
+        if user_option == "1":
+            registration = (str(registration))
+            r1=cur.fetchall()
+            for i in r1:
+                print(r1)
+
+
 def students():
     print("")
     print("Student Login")
