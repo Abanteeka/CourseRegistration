@@ -9,7 +9,7 @@ import mysql.connector
 # change password
 
 def students(registration, name):
-    con = mysql.connector.connect(host="localhost", user="root", passwd="1340", database="bookstore")
+    con = mysql.connector.connect(host="localhost", user="root", passwd="1340", database="courseregistration")
     cur = con.cursor()
     while True:
         print("")
