@@ -1,13 +1,15 @@
 import mysql.connector
-# acess course table
+
+
+# access course table
 # login
 
-def faculty(registration,name):
-    con = mysql.connector.connect(host="localhost", user="root", passwd="1340", database="courseregistration")
+def faculty(registration, name):
+    con = mysql.connector.connect(host="localhost", user="root", passwd="", database="courseregistration")
     cur = con.cursor()
     while True:
         print("")
-        print("{}           {}             {}".format(name, registration, datetime.time))
+        print("{}           {}             {}".format(name, registration, "date"))
         print("1.search course")
         print("2.routine")
         print("3.Logout")
@@ -23,12 +25,11 @@ def faculty(registration,name):
                 for j in i:
                     c = j
         elif user_option == 2:
-            print()
+            print("Routine :")
         elif user_option == 3:
-            print()
-        elif user_option == 4:
             break
         else:
             print("Wrong Option!! Try Again")
+
 
 faculty("abc", "abc")
