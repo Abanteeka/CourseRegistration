@@ -1,8 +1,10 @@
 import mysql.connector
+
+
 # acess course table
 # login
 
-def faculty(registration,name):
+def faculty(registration, name):
     con = mysql.connector.connect(host="localhost", user="root", passwd="1340", database="courseregistration")
     cur = con.cursor()
     while True:
@@ -30,5 +32,6 @@ def faculty(registration,name):
             break
         else:
             print("Wrong Option!! Try Again")
+
 
 faculty("abc", "abc")
