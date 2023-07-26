@@ -1,19 +1,11 @@
 import mysql.connector
 
 
-<<<<<<< HEAD
-# acess course table
-# login
-
-def faculty(registration, name):
-    con = mysql.connector.connect(host="localhost", user="root", passwd="1340", database="courseregistration")
-=======
 # access course table
 # login
 
 def faculty(registration, name):
     con = mysql.connector.connect(host="localhost", user="root", passwd="", database="courseregistration")
->>>>>>> b46dcbdd99ed6548be9d5e53f16397c6a6e8b532
     cur = con.cursor()
     while True:
         print("")
