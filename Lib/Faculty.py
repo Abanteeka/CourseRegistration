@@ -1,15 +1,18 @@
 import mysql.connector
+from datetime import datetime
 
 
 # access course table
 # login
 
-def faculty(registration, name):
-    con = mysql.connector.connect(host="localhost", user="root", passwd="", database="courseregistration")
+def faculty(registration, name, pass_wd):
+    con = mysql.connector.connect(host="localhost", user="root", passwd=pass_wd, database="courseregistration")
     cur = con.cursor()
     while True:
         print("")
-        print("{}           {}             {}".format(name, registration, "date"))
+        a = datetime.now()
+        print("%s       %s:%s" % (a.date(), a.hour, a.minute))
+        print("{}           {}".format(name, registration))
         print("1.search course")
         print("2.routine")
         print("3.Logout")
@@ -30,6 +33,3 @@ def faculty(registration, name):
             break
         else:
             print("Wrong Option!! Try Again")
-
-
-faculty("abc", "abc")
