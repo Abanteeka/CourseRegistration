@@ -5,6 +5,7 @@
 
 import mysql.connector
 
+
 def admin(name, registration):
     con = mysql.connector.connect(host="localhost", user="root", passwd="", database="courseregistration")
     cur = con.cursor()
