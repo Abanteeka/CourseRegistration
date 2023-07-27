@@ -9,7 +9,7 @@ from Lib import Faculty
 
 
 def Symbol():
-    print("░█████╗░░█████╗░██╗░░░██╗██████╗░░██████╗███████╗")
+    print("\033[0;96m░█████╗░░█████╗░██╗░░░██╗██████╗░░██████╗███████╗")
     print("██╔══██╗██╔══██╗██║░░░██║██╔══██╗██╔════╝██╔════╝")
     print("██║░░╚═╝██║░░██║██║░░░██║██████╔╝╚█████╗░█████╗░░")
     print("██║░░██╗██║░░██║██║░░░██║██╔══██╗░╚═══██╗██╔══╝░░")
@@ -54,17 +54,20 @@ def main():
             a = datetime.now()
             Symbol()
             print()
-            print("%s                                           %s:%s" % (a.date(), a.hour, a.minute))
+            print("%s                                           %s:%s\033[0m" % (a.date(), a.hour, a.minute))
             print()
-            print("Login Successful")
+            print("\033[0;32mLogin Successful\033[0m")
             print()
             while True:
                 print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
+                print()
                 print("1. Admin Login")
                 print("2. Students Login")
                 print("3. Faculty Login")
                 print("4. Exit")
+                print()
                 choice = int(input("Enter Your Choice :"))
+                print()
                 if choice == 1:
                     u = input("Enter Username :")
                     p = input("Enter Password :")
@@ -104,15 +107,15 @@ def main():
                     else:
                         print("try again")
                 elif choice == 4:
-                    print("Thank You")
+                    print("\033[0;34m><><><><><><><><><><><><><><><><><><><><>< Thank You ><><><><><><><><><><><><><><><><><><><><\033[0m")
                     break
                 else:
                     print("Try again Wrong Option")
         else:
             print("Error Occurred Mysql not connected")
     except mysql.connector.Error as error:
-        print("Error Occurred Mysql not connected")
-        print("Error : {}".format(error))
+        print("\033[0;91mError Occurred Mysql not connected\033[0m")
+        print("\033[0;91mError : {}\033[0m".format(error))
 
 
 if __name__ == '__main__':
