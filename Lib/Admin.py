@@ -2,6 +2,7 @@
 # delete student reset password
 # add/delete course
 # access course section
+# sha256 add to database password
 
 import mysql.connector
 
@@ -25,7 +26,6 @@ def admin(registration, name, PASSWD):
             qry = "select * from table where course = {};".format(course_name)
             cur.execute(qry)
             sl1 = cur.fetchall()
-            c = 0
             for i in sl1:
                 for j in i:
                     c = j
