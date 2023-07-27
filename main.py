@@ -8,6 +8,22 @@ from Lib import Students
 from Lib import Faculty
 
 
+def Symbol():
+    print("░█████╗░░█████╗░██╗░░░██╗██████╗░░██████╗███████╗")
+    print("██╔══██╗██╔══██╗██║░░░██║██╔══██╗██╔════╝██╔════╝")
+    print("██║░░╚═╝██║░░██║██║░░░██║██████╔╝╚█████╗░█████╗░░")
+    print("██║░░██╗██║░░██║██║░░░██║██╔══██╗░╚═══██╗██╔══╝░░")
+    print("╚█████╔╝╚█████╔╝╚██████╔╝██║░░██║██████╔╝███████╗")
+    print("░╚════╝░░╚════╝░░╚═════╝░╚═╝░░╚═╝╚═════╝░╚══════╝")
+
+    print("██████╗░███████╗░██████╗░██╗░██████╗████████╗██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗")
+    print("██╔══██╗██╔════╝██╔════╝░██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║")
+    print("██████╔╝█████╗░░██║░░██╗░██║╚█████╗░░░░██║░░░██████╔╝███████║░░░██║░░░██║██║░░██║██╔██╗██║")
+    print("██╔══██╗██╔══╝░░██║░░╚██╗██║░╚═══██╗░░░██║░░░██╔══██╗██╔══██║░░░██║░░░██║██║░░██║██║╚████║")
+    print("██║░░██║███████╗╚██████╔╝██║██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║")
+    print("╚═╝░░╚═╝╚══════╝░╚═════╝░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝")
+
+
 def main():
     # login
     pass_w = input("Enter Database Password :")
@@ -36,10 +52,14 @@ def main():
                     print("User Not Found")
 
             a = datetime.now()
-            print("%s       %s:%s" % (a.date(), a.hour, a.minute))
+            Symbol()
+            print()
+            print("%s                                           %s:%s" % (a.date(), a.hour, a.minute))
+            print()
             print("Login Successful")
+            print()
             while True:
-                print("===================== OPTIONS =====================")
+                print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
                 print("1. Admin Login")
                 print("2. Students Login")
                 print("3. Faculty Login")
@@ -64,6 +84,8 @@ def main():
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))
                         m = cur.fetchall()
                         if m[0][0] == 'S':
+                            # cur.execute("select name from students where studentID='{}';".format(str(u)))
+                            # m = cur.fetchall()
                             Students.students(u, "name", pass_w)
                         else:
                             print("You are not Student Try Suitable option")
