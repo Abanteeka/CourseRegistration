@@ -1,4 +1,5 @@
 # login-->file
+import hashlib
 import mysql.connector
 from datetime import datetime
 
@@ -16,13 +17,20 @@ def main():
             # create database if not there
             cur = con.cursor()
 
-            def passwd_check(username, PASS, Type):
+            def passwd_check(PASS, username):
                 try:
-                    cur.execute("select password from login where usrname={};".format(username))
+                    cur.execute("select password from login where usrname='{}';".format(str(username)))
                     m = cur.fetchall()
-                    if PASS == m[0][0]:
-                        return True
+                    x = hashlib.sha256(PASS.encode('utf-8')).hexdigest()
+                    if m:
+                        if x == m[0][0]:
+                            print("Login Successful")
+                            return True
+                        else:
+                            print("Password Incorrect")
+                            return False
                     else:
+                        print("Username Not Found")
                         return False
                 except mysql.connector.Error as error:
                     print("User Not Found")
@@ -33,29 +41,44 @@ def main():
             while True:
                 print("===================== OPTIONS =====================")
                 print("1. Admin Login")
-                print("2. Faculty Login")
-                print("3. Students Login")
+                print("2. Students Login")
+                print("3. Faculty Login")
                 print("4. Exit")
                 choice = int(input("Enter Your Choice :"))
                 if choice == 1:
                     u = input("Enter Username :")
                     p = input("Enter Password :")
-                    if passwd_check(p, u, "faculty"):
-                        Admin.admin("Registration", u, pass_w)
+                    if passwd_check(p, u):
+                        cur.execute("select privilage from login where usrname='{}';".format(str(u)))
+                        m = cur.fetchall()
+                        if m[0][0] == 'A':
+                            Admin.admin("Registration", u, pass_w)
+                        else:
+                            print("You are not Admin Try Suitable option")
                     else:
                         print("try again")
                 elif choice == 2:
-                    u = input("Enter Username :")
+                    u = input("Enter Registration Number :")
                     p = input("Enter Password :")
-                    if passwd_check(p, u, "faculty"):
-                        Students.students("Registration", u, pass_w)
+                    if passwd_check(p, u):
+                        cur.execute("select privilage from login where usrname='{}';".format(str(u)))
+                        m = cur.fetchall()
+                        if m[0][0] == 'S':
+                            Students.students(u, "name", pass_w)
+                        else:
+                            print("You are not Student Try Suitable option")
                     else:
                         print("try again")
                 elif choice == 3:
-                    u = input("Enter Username :")
+                    u = input("Enter Registration Number :")
                     p = input("Enter Password :")
-                    if passwd_check(p, u, "faculty"):
-                        Faculty.faculty("Registration", u, pass_w)
+                    if passwd_check(p, u):
+                        cur.execute("select privilage from login where usrname='{}';".format(str(u)))
+                        m = cur.fetchall()
+                        if m[0][0] == 'F':
+                            Faculty.faculty(u, "name", pass_w)
+                        else:
+                            print("You are not Faculty Try Suitable option")
                     else:
                         print("try again")
                 elif choice == 4:
