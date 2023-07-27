@@ -17,7 +17,7 @@ def admin(registration, name, PASSWD):
         print("2.Delete Student")
         print("3.Add Course")
         print("4.Delete Course")
-        print("5.Course Section")
+        print("5.Show Course")
         #print("3.Logout")
 
         user_option = int(input("Options: "))
