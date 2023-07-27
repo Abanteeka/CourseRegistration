@@ -8,8 +8,8 @@ import mysql.connector
 # access course routine
 # change password
 
-def students(registration, name):
-    con = mysql.connector.connect(host="localhost", user="root", passwd="", database="courseregistration")
+def students(registration, name, Passwd):
+    con = mysql.connector.connect(host="localhost", user="root", passwd=Passwd, database="courseregistration")
     cur = con.cursor()
     while True:
         print("")
@@ -37,6 +37,3 @@ def students(registration, name):
             break
         else:
             print("Wrong Option!! Try Again")
-
-
-students("abc", "abc")
