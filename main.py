@@ -2,6 +2,8 @@
 import mysql.connector
 from datetime import datetime
 
+from Lib import Admin
+from Lib import Students
 from Lib import Faculty
 
 
@@ -36,8 +38,20 @@ def main():
                 print("4. Exit")
                 choice = int(input("Enter Your Choice :"))
                 if choice == 1:
-                    print("1")
+                    u = input("Enter Username :")
+                    p = input("Enter Password :")
+                    if passwd_check(p, u, "faculty"):
+                        Admin.admin("Registration", u, pass_w)
+                    else:
+                        print("try again")
                 elif choice == 2:
+                    u = input("Enter Username :")
+                    p = input("Enter Password :")
+                    if passwd_check(p, u, "faculty"):
+                        Students.students("Registration", u, pass_w)
+                    else:
+                        print("try again")
+                elif choice == 3:
                     u = input("Enter Username :")
                     p = input("Enter Password :")
                     if passwd_check(p, u, "faculty"):
