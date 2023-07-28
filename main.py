@@ -40,7 +40,8 @@ def main():
                     x = hashlib.sha256(PASS.encode('utf-8')).hexdigest()
                     if m:
                         if x == m[0][0]:
-                            print("Login Successful")
+                            print()
+                            print("\033[0;32mLogin Successful\033[0m")
                             return True
                         else:
                             print("Password Incorrect")

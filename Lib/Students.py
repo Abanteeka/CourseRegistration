@@ -1,6 +1,7 @@
 import datetime
 import mysql.connector
-
+import pandas as pd
+import numpy as np
 
 # Login
 # search course
@@ -8,12 +9,14 @@ import mysql.connector
 # access course routine
 # change password
 
+
 def students(registration, name, Passwd):
     con = mysql.connector.connect(host="localhost", user="root", passwd=Passwd, database="courseregistration")
     cur = con.cursor()
     while True:
         print("")
         print("{}           {}             {}".format(name, registration, datetime.time))
+        print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.search course")
         print("2.select course")
         print("3.routine")
@@ -21,14 +24,16 @@ def students(registration, name, Passwd):
 
         user_option = int(input("Options: "))
         if user_option == 1:
-            course_name = input("Enter Course Name: ")
-            qry = "select * from table where course = {};".format(course_name)
-            cur.execute(qry)
-            sl = cur.fetchall()
-            c = 0
-            for i in sl:
-                for j in i:
-                    c = j
+            course_code = input("Enter Course Code: ")
+            cur.execute("select * from course_data where course_id = '{}';".format(course_code))
+            m = cur.fetchall()
+            df = pd.DataFrame(m)
+            df.rename(columns={0: 'Course Id'}, inplace=True)
+            df.rename(columns={1: 'Course Name'}, inplace=True)
+            df.rename(columns={2: 'Description'}, inplace=True)
+            df.index = np.arange(1, len(df) + 1)
+            print(df)
+
         elif user_option == 2:
             print()
         elif user_option == 3:

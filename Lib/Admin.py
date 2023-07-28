@@ -7,14 +7,17 @@
 import pandas as pd
 import numpy as np
 import mysql.connector
+from datetime import datetime
 
 
 def admin(registration, name, PASSWD):
     con = mysql.connector.connect(host="localhost", user="root", passwd=PASSWD, database="courseregistration")
     cur = con.cursor()
+    a = datetime.now()
     while True:
         print("")
-        print("{}           {}             {}".format(name, registration, "date"))
+        print("%s                 %s      %s                    %s:%s" % (a.date(), registration, name, a.hour, a.minute))
+        print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.Add Student")
         print("2.Delete Student")
         print("3.Add Course")
