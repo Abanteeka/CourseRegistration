@@ -32,21 +32,34 @@ def admin(registration, name, PASSWD):
         if user_option == 1:
             student_name = input("Enter Student Name : ")
             Admission_year = input("Enter Admission Year : ")
+            Email = input("Enter Email Id : ")
             #course = input
             #-1 from last roll no. || "select registerno. from {} where registerno is like "{}{}%"".format()
             # course = {"CSE CYBER SECURITY":"BCY","":""}
-            while True : #options 1 cse core 2 cyber
-                print("---------Select Course----------")
-                print("1.CSE Core")
-                print("2.CSE Cyber Security and Digital Forensics")
-                print("3.CSE Aiml")
-                print("4.CSE Gaming")
-                print("5.CSE Health Informatics")
+            course = " "
 
-                User_Input1 = int(input("Enter Your Course"))
+            print("---------Select Course----------")
+            print("1.CSE Core")
+            print("2.CSE Cyber Security and Digital Forensics")
+            print("3.CSE Aiml")
+            print("4.CSE Gaming")
+            print("5.CSE Health Informatics")
 
+            User_Input1 = int(input("Enter Your Course"))
+                if(User_Input1==1):
+                    course = "BCE"
+                elif(User_Input1==2):
+                    course = "BCY"
+                elif(User_Input1==3):
+                    course = "BAI"
+                elif(User_Input1==4):
+                    course = "BCG"
+                elif(User_Input1==5):
+                    course = "BHI"
+                else:
+                    print("invalid Option")
 
-            qry = "select * from table where course = {};".format(student_name)
+            qry = "select * from table where student_name = {};".format(student_name)
             cur.execute(qry)
             sl1 = cur.fetchall()
             for i in sl1:
