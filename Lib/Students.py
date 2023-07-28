@@ -13,15 +13,17 @@ import numpy as np
 def students(registration, name, Passwd):
     con = mysql.connector.connect(host="localhost", user="root", passwd=Passwd, database="courseregistration")
     cur = con.cursor()
+    a = datetime.now()
     while True:
-        print("")
-        print("{}           {}             {}".format(name, registration, datetime.time))
+        print()
+        print("%s       %s:%s" % (a.date(), a.hour, a.minute))
+        print("{}           {}".format(name, registration))
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.search course")
         print("2.select course")
         print("3.routine")
         print("4.Logout")
-
+        print()
         user_option = int(input("Options: "))
         if user_option == 1:
             course_code = input("Enter Course Code: ")

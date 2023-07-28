@@ -26,7 +26,8 @@ def admin(registration, name, PASSWD):
         print("6.Change Password")
         print("7.Show Student Lists")
         print("8.Show Faculty Lists")
-        print("9.Logout")
+        print("9.Assign Course")
+        print("10.Logout")
 
         user_option = int(input("Options: "))
 
@@ -89,7 +90,7 @@ def admin(registration, name, PASSWD):
             df.index = np.arange(1, len(df) + 1)
             print(df)
 
-        elif user_option == 9:
+        elif user_option == 10:
             break
         else:
             print("Wrong Option!! Try Again")
