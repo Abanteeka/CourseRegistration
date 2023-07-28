@@ -29,6 +29,7 @@ def admin(registration, name, PASSWD):
         print("9.Logout")
 
         user_option = int(input("Options: "))
+
         if user_option == 1:
             student_name = input("Enter Student Name : ")
             Admission_year = input("Enter Admission Year : ")
@@ -46,19 +47,18 @@ def admin(registration, name, PASSWD):
             print("5.CSE Health Informatics")
 
             User_Input1 = int(input("Enter Your Course"))
-                if(User_Input1==1):
-                    course = "BCE"
-                elif(User_Input1==2):
-                    course = "BCY"
-                elif(User_Input1==3):
-                    course = "BAI"
-                elif(User_Input1==4):
-                    course = "BCG"
-                elif(User_Input1==5):
-                    course = "BHI"
-                else:
-                    print("invalid Option")
-
+            if User_Input1==1:
+                course = "BCE"
+            elif User_Input1==2:
+                course = "BCY"
+            elif User_Input1==3:
+                course = "BAI"
+            elif User_Input1==4:
+                course = "BCG"
+            elif User_Input1==5:
+                course = "BHI"
+            else:
+                print("invalid Option")
             qry = "select * from table where student_name = {};".format(student_name)
             cur.execute(qry)
             sl1 = cur.fetchall()
