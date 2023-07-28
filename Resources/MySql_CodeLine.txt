@@ -4,8 +4,8 @@ create database CourseRegistration;
 Create Tables:-
 create table login(slno int,usrname varchar(30),password varchar(1000),privilage char(1));
 create table admin(aid int,name varchar(30),email varchar(30));
-create table student(studentID int,name varchar(30),email varchar(30));
-create table faculty(facultyID int,name varchar(30),email varchar(30));
-create table studentcourse(coutseID int,course_name varchar(30),description varchar(100));
+create table student(studentID char(10),name varchar(30),email varchar(30));
+create table faculty(facultyID char(10),name varchar(30),email varchar(30));
+create table course_data(course_id char(7),course_name varchar(30),description varchar(100));
 insert into login values(1,"admin","5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8");
 # the password is SHA256 for "password"
