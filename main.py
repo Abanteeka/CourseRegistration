@@ -70,12 +70,13 @@ def main():
                 print()
                 if choice == 1:
                     u = input("Enter Username :")
+                    # dont show the password
                     p = input("Enter Password :")
                     if passwd_check(p, u):
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))
                         m = cur.fetchall()
                         if m[0][0] == 'A':
-                            Admin.admin("Registration", u, pass_w)
+                            Admin.admin("Admin", u, pass_w)
                         else:
                             print("You are not Admin Try Suitable option")
                     else:
@@ -87,9 +88,12 @@ def main():
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))
                         m = cur.fetchall()
                         if m[0][0] == 'S':
-                            # cur.execute("select name from students where studentID='{}';".format(str(u)))
-                            # m = cur.fetchall()
-                            Students.students(u, "name", pass_w)
+                            cur.execute("select name from student where studentID='{}';".format(str(u)))
+                            m = cur.fetchall()
+                            if m:
+                                Students.students(u, m[0][0], pass_w)
+                            else:
+                                print("Name Not Found")
                         else:
                             print("You are not Student Try Suitable option")
                     else:
@@ -101,12 +105,18 @@ def main():
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))
                         m = cur.fetchall()
                         if m[0][0] == 'F':
-                            Faculty.faculty(u, "name", pass_w)
+                            cur.execute("select name from faculty where facultyID='{}';".format(str(u)))
+                            m = cur.fetchall()
+                            if m:
+                                Faculty.faculty(u, m[0][0], pass_w)
+                            else:
+                                print("Name Not Found")
                         else:
                             print("You are not Faculty Try Suitable option")
                     else:
                         print("try again")
                 elif choice == 4:
+                    con.close()
                     print("\033[0;34m><><><><><><><><><><><><><><><><><><><><>< Thank You ><><><><><><><><><><><><><><><><><><><><\033[0m")
                     break
                 else:

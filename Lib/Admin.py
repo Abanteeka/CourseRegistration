@@ -4,6 +4,8 @@
 # access course section
 # sha256 add to database password
 
+import pandas as pd
+import numpy as np
 import mysql.connector
 
 
@@ -19,7 +21,9 @@ def admin(registration, name, PASSWD):
         print("4.Delete Course")
         print("5.Show Course")
         print("6.Change Password")
-        print("7.Logout")
+        print("7.Show Student Lists")
+        print("8.Show Faculty Lists")
+        print("9.Logout")
 
         user_option = int(input("Options: "))
         if user_option == 1:
@@ -47,7 +51,29 @@ def admin(registration, name, PASSWD):
                     c = j
         elif user_option == 2:
             print("Routine :")
+        elif user_option == 3:
+            ID = input("Enter Course Code :")
+            Name = input("Enter Course Code :")
+            Description = input("Enter Description :")
+            m = input("Confirm Upload?[Y/N] :")
+            if m == 'Y' or m == 'y' or m == 'yes' or m == 'Yes' or m == 'YES':
+                cur.execute("insert into course_data values('{}','{}','{}');".format(ID,Name,Description))
+                con.commit()
+                print("Data update Successful")
+            else:
+                print("Try Again")
         elif user_option == 7:
+            cur.execute("select * from student;")
+            m = cur.fetchall()
+            df = pd.DataFrame(m)
+            df.rename(columns={0: 'Registration Number'}, inplace=True)
+            df.rename(columns={1: 'Name'}, inplace=True)
+            df.rename(columns={2: 'Email ID'}, inplace=True)
+            df.rename(columns={3: 'Password'}, inplace=True) # delete the coloum
+            df.index = np.arange(1, len(df) + 1)
+            print(df)
+
+        elif user_option == 9:
             break
         else:
             print("Wrong Option!! Try Again")
