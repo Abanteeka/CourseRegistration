@@ -61,7 +61,7 @@ def admin(registration, name, PASSWD):
             print("4.CSE Gaming")
             print("5.CSE Health Informatics")
 
-            User_Input1 = int(input("Enter Your Course"))
+            User_Input1 = int(input("Enter Your Choice"))
             if User_Input1 == 1:
                 course = "BCE"
             elif User_Input1 == 2:
