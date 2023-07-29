@@ -31,9 +31,9 @@ def admin(registration, name, PASSWD):
         print(
             "%s                 %s      %s                    %s:%s" % (a.date(), registration, name, a.hour, a.minute))
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
-        print("1.Add Student")
-        print("2.Delete Student")
-        print("3.Add Course")
+        print("1.Add Student")  # working
+        print("2.Delete Student")  # next
+        print("3.Add Course")  # done
         print("4.Delete Course")
         print("5.Show Course")
         print("6.Reset Password")
@@ -47,6 +47,7 @@ def admin(registration, name, PASSWD):
         if user_option == 1:
             student_name = input("Enter Student Name : ")
             Admission_year = input("Enter Admission Year : ")
+
             Email = input("Enter Email Id : ")
             # course = input
             # -1 from last roll no. || "select registerno. from {} where registerno is like "{}{}%"".format()
@@ -73,6 +74,29 @@ def admin(registration, name, PASSWD):
                 course = "BHI"
             else:
                 print("invalid Option")
+
+            # generate reg. no.
+            a = str(Admission_year)
+            w = str(a[2]) + str(a[3]) + str(course)
+            w = w +s2
+            qry1 = "select studentID from student where studentID like '{}%';".format(Admission_year)
+            cur.execute(qry1)
+            rn = cur.fetchall()
+            rn1 = rn[len(rn) - 1][0]
+            s1 = ""
+            k = int(s1)
+            k = k + 1
+            k = str(k)
+            s2 = "00000"
+            for i in range(4, 10):
+                s1 = s1 + rn1[i]
+            g = 4
+            for j in range(len(k) - 1, 0, -1):
+                s2[g] = k[j]
+                g = g-1
+            con.commit()
+
+
             qry = "select * from table where student_name = {};".format(student_name)
             cur.execute(qry)
             sl1 = cur.fetchall()
