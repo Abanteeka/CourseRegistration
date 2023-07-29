@@ -3,7 +3,8 @@
 # add/delete course
 # access course section
 # sha256 add to database password
-
+import random
+import hashlib
 import pandas as pd
 import numpy as np
 import mysql.connector
@@ -14,6 +15,17 @@ def admin(registration, name, PASSWD):
     con = mysql.connector.connect(host="localhost", user="root", passwd=PASSWD, database="courseregistration")
     cur = con.cursor()
     a = datetime.now()
+
+    def generatePassRandom():
+        l1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+              'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        w = ""
+        i = 0
+        while i < 5:
+            w = w + random.choice(l1)
+            i += 1
+        return w
+
     while True:
         print("")
         print(
@@ -24,7 +36,7 @@ def admin(registration, name, PASSWD):
         print("3.Add Course")  # done
         print("4.Delete Course")
         print("5.Show Course")
-        print("6.Change Password")  # working
+        print("6.Reset Password")
         print("7.Show Student Lists")
         print("8.Show Faculty Lists")
         print("9.Assign Course")
@@ -104,6 +116,52 @@ def admin(registration, name, PASSWD):
                 print("Data update Successful")
             else:
                 print("Try Again")
+        elif user_option == 6:
+            while True:
+                print("1.Admin Password")
+                print("2.Student Password")
+                print("3.Faculty Password")
+                print("4.Cancel")
+                m = int(input("Enter Your Choice :"))
+                if m == 1:
+                    k = input("Enter Old password :")
+                    cur.execute("select password from login where usrname='{}';".format(name))
+                    g = cur.fetchall()
+                    if hashlib.sha256(k.encode('utf-8')).hexdigest() == g[0][0]:
+                        n1 = input("Enter New Password :")
+                        n2 = input("Re-Enter Password :")
+                        if n1 == n2:
+                            cur.execute("update login set password='{}' where usrname='{}';".format(
+                                hashlib.sha256(n1.encode('utf-8')).hexdigest(), name))
+                            print("Password Update Successful")
+                            con.commit()
+                        else:
+                            print("Password Not matched. Try again!!")
+                    else:
+                        print("Wrong Password")
+                elif m == 2:
+                    k = input("Enter Registration No. of the Student:")
+                    x = generatePassRandom()
+                    cur.execute("update login set password='{}' where usrname='{}';".format(
+                        hashlib.sha256(x.encode('utf-8')).hexdigest(), k))
+                    con.commit()
+                    print("Password Reset Successful")
+                    print("New Password is : {}".format(x))
+                    print("Thank You")
+                elif m == 3:
+                    k = input("Enter Registration No. of the Faculty : ")
+                    x = generatePassRandom()
+                    cur.execute("update login set password='{}' where usrname='{}';".format(
+                        hashlib.sha256(x.encode('utf-8')).hexdigest(), k))
+                    con.commit()
+                    print("Password Reset Successful")
+                    print("New Password is : {}".format(x))
+                    print("Thank You")
+                elif m == 4:
+                    break
+                else:
+                    print("Wrong Option Try Again")
+
         elif user_option == 7:
             cur.execute("select * from student;")
             m = cur.fetchall()
