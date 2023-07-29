@@ -78,7 +78,6 @@ def admin(registration, name, PASSWD):
             # generate reg. no.
             a = str(Admission_year)
             w = str(a[2]) + str(a[3]) + str(course)
-            w = w +s2
             qry1 = "select studentID from student where studentID like '{}%';".format(Admission_year)
             cur.execute(qry1)
             rn = cur.fetchall()
@@ -94,15 +93,11 @@ def admin(registration, name, PASSWD):
             for j in range(len(k) - 1, 0, -1):
                 s2[g] = k[j]
                 g = g-1
+            qry2 = " insert into student values('{}','{}','{}');".format(w,student_name,Email)
+            cur.execute(qry2)
+            w = w+s2
             con.commit()
 
-
-            qry = "select * from table where student_name = {};".format(student_name)
-            cur.execute(qry)
-            sl1 = cur.fetchall()
-            for i in sl1:
-                for j in i:
-                    c = j
         elif user_option == 2:
             print("Routine :")
         elif user_option == 3:
