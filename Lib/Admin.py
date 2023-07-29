@@ -82,6 +82,9 @@ def admin(registration, name, PASSWD):
             for j in range(len(k) - 1, 0, -1):
                 s2[g] = k[j]
                 g = g-1
+            con.commit()
+
+
             qry = "select * from table where student_name = {};".format(student_name)
             cur.execute(qry)
             sl1 = cur.fetchall()
