@@ -47,7 +47,6 @@ def admin(registration, name, PASSWD):
         if user_option == 1:
             student_name = input("Enter Student Name : ")
             Admission_year = input("Enter Admission Year : ")
-
             Email = input("Enter Email Id : ")
             # course = input
             # -1 from last roll no. || "select registerno. from {} where registerno is like "{}{}%"".format()
@@ -93,9 +92,10 @@ def admin(registration, name, PASSWD):
             for j in range(len(k) - 1, 0, -1):
                 s2[g] = k[j]
                 g = g-1
+            w = w + s2
             qry2 = " insert into student values('{}','{}','{}');".format(w,student_name,Email)
             cur.execute(qry2)
-            w = w+s2
+
             con.commit()
 
         elif user_option == 2:
