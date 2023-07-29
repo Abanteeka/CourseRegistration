@@ -71,7 +71,7 @@ def main():
                 print()
                 if choice == 1:
                     u = input("Enter Username :")
-                    # dont show the password
+                    # don't show the password
                     p = input("Enter Password :")
                     if passwd_check(p, u):
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))

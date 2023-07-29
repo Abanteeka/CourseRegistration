@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import mysql.connector
 import pandas as pd
 import numpy as np
@@ -22,7 +22,8 @@ def students(registration, name, Passwd):
         print("1.search course")
         print("2.select course")
         print("3.routine")
-        print("4.Logout")
+        print("4.Reset Password")
+        print("5.Logout")
         print()
         user_option = int(input("Options: "))
         if user_option == 1:
@@ -40,7 +41,7 @@ def students(registration, name, Passwd):
             print()
         elif user_option == 3:
             print()
-        elif user_option == 4:
+        elif user_option == 5:
             break
         else:
             print("Wrong Option!! Try Again")
