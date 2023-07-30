@@ -15,6 +15,8 @@ def admin(registration, name, PASSWD):
     con = mysql.connector.connect(host="localhost", user="root", passwd=PASSWD, database="courseregistration")
     cur = con.cursor()
     a = datetime.now()
+    print(
+        "%s                 %s      %s                    %s:%s" % (a.date(), registration, name, a.hour, a.minute))
 
     def generatePassRandom():
         l1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -27,17 +29,14 @@ def admin(registration, name, PASSWD):
         return w
 
     while True:
-        print("")
-        print(
-            "%s                 %s      %s                    %s:%s" % (a.date(), registration, name, a.hour, a.minute))
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
-        print("1.Add Student")  # working
+        print("1.Add Student")  # done
         print("2.Delete Student")  # next
         print("3.Add Course")  # done
         print("4.Delete Course")
         print("5.Show Course")
-        print("6.Reset Password")
-        print("7.Show Student Lists")
+        print("6.Reset Password")  # done
+        print("7.Show Student Lists")  # done
         print("8.Show Faculty Lists")
         print("9.Assign Course")
         print("10.Logout")
@@ -60,7 +59,7 @@ def admin(registration, name, PASSWD):
             print("4.CSE Gaming")
             print("5.CSE Health Informatics")
 
-            User_Input1 = int(input("Enter Your Choice"))
+            User_Input1 = int(input("Enter Your Choice :"))
             if User_Input1 == 1:
                 course = "BCE"
             elif User_Input1 == 2:
@@ -81,7 +80,10 @@ def admin(registration, name, PASSWD):
             cur.execute(qry1)
             rn = cur.fetchall()
             # generate 21BCE10000 if !rn
-            rn1 = rn[len(rn) - 1][0]
+            if rn:
+                rn1 = rn[len(rn) - 1][0]
+            else:
+                rn1 = w + "10000"
             s1 = ""
             for i in range(5, 10):
                 s1 = s1 + rn1[i]
