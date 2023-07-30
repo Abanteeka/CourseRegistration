@@ -31,15 +31,16 @@ def admin(registration, name, PASSWD):
     while True:
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.Add Student")  # done
-        print("2.Delete Student")  # next
-        print("3.Add Course")  # done
-        print("4.Delete Course")
-        print("5.Show Course")
-        print("6.Reset Password")  # done
-        print("7.Show Student Lists")  # done
-        print("8.Show Faculty Lists")
-        print("9.Assign Course")
-        print("10.Logout")
+        print("2.Add Faculty")  # done
+        print("3.Delete Student")  # next
+        print("4.Add Course")  # done
+        print("5.Delete Course")
+        print("6.Show Course")
+        print("7.Reset Password")  # done
+        print("8.Show Student Lists")  # done
+        print("9.Show Faculty Lists")
+        print("10.Assign Course")
+        print("11.Logout")
 
         user_option = int(input("Options: "))
 
@@ -107,7 +108,7 @@ def admin(registration, name, PASSWD):
 
         elif user_option == 2:
             print("Routine :")
-        elif user_option == 3:
+        elif user_option == 4:
             ID = input("Enter Course Code :")
             Name = input("Enter Course Code :")
             Description = input("Enter Description :")
@@ -118,7 +119,7 @@ def admin(registration, name, PASSWD):
                 print("Data update Successful")
             else:
                 print("Try Again")
-        elif user_option == 6:
+        elif user_option == 7:
             while True:
                 print("1.Admin Password")
                 print("2.Student Password")
@@ -165,7 +166,7 @@ def admin(registration, name, PASSWD):
                 else:
                     print("Wrong Option Try Again")
 
-        elif user_option == 7:
+        elif user_option == 8:
             cur.execute("select * from student;")
             m = cur.fetchall()
             df = pd.DataFrame(m)
@@ -176,7 +177,7 @@ def admin(registration, name, PASSWD):
             df.index = np.arange(1, len(df) + 1)
             print(df)
 
-        elif user_option == 10:
+        elif user_option == 11:
             break
         else:
             print("Wrong Option!! Try Again")
