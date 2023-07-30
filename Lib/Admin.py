@@ -15,6 +15,8 @@ def admin(registration, name, PASSWD):
     con = mysql.connector.connect(host="localhost", user="root", passwd=PASSWD, database="courseregistration")
     cur = con.cursor()
     a = datetime.now()
+    print(
+        "%s                 %s      %s                    %s:%s" % (a.date(), registration, name, a.hour, a.minute))
 
     def generatePassRandom():
         l1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -27,20 +29,18 @@ def admin(registration, name, PASSWD):
         return w
 
     while True:
-        print("")
-        print(
-            "%s                 %s      %s                    %s:%s" % (a.date(), registration, name, a.hour, a.minute))
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
-        print("1.Add Student")  # working
-        print("2.Delete Student")  # next
-        print("3.Add Course")  # done
-        print("4.Delete Course")
-        print("5.Show Course")
-        print("6.Reset Password")
-        print("7.Show Student Lists")
-        print("8.Show Faculty Lists")
-        print("9.Assign Course")
-        print("10.Logout")
+        print("1.Add Student")  # done
+        print("2.Add Faculty")  # done
+        print("3.Delete Student")  # next
+        print("4.Add Course")  # done
+        print("5.Delete Course")
+        print("6.Show Course")
+        print("7.Reset Password")  # done
+        print("8.Show Student Lists")  # done
+        print("9.Show Faculty Lists")
+        print("10.Assign Course")
+        print("11.Logout")
 
         user_option = int(input("Options: "))
 
@@ -60,7 +60,7 @@ def admin(registration, name, PASSWD):
             print("4.CSE Gaming")
             print("5.CSE Health Informatics")
 
-            User_Input1 = int(input("Enter Your Choice"))
+            User_Input1 = int(input("Enter Your Choice :"))
             if User_Input1 == 1:
                 course = "BCE"
             elif User_Input1 == 2:
@@ -81,7 +81,10 @@ def admin(registration, name, PASSWD):
             cur.execute(qry1)
             rn = cur.fetchall()
             # generate 21BCE10000 if !rn
-            rn1 = rn[len(rn) - 1][0]
+            if rn:
+                rn1 = rn[len(rn) - 1][0]
+            else:
+                rn1 = w + "10000"
             s1 = ""
             for i in range(5, 10):
                 s1 = s1 + rn1[i]
@@ -105,7 +108,7 @@ def admin(registration, name, PASSWD):
 
         elif user_option == 2:
             print("Routine :")
-        elif user_option == 3:
+        elif user_option == 4:
             ID = input("Enter Course Code :")
             Name = input("Enter Course Code :")
             Description = input("Enter Description :")
@@ -116,7 +119,7 @@ def admin(registration, name, PASSWD):
                 print("Data update Successful")
             else:
                 print("Try Again")
-        elif user_option == 6:
+        elif user_option == 7:
             while True:
                 print("1.Admin Password")
                 print("2.Student Password")
@@ -163,7 +166,7 @@ def admin(registration, name, PASSWD):
                 else:
                     print("Wrong Option Try Again")
 
-        elif user_option == 7:
+        elif user_option == 8:
             cur.execute("select * from student;")
             m = cur.fetchall()
             df = pd.DataFrame(m)
@@ -174,7 +177,7 @@ def admin(registration, name, PASSWD):
             df.index = np.arange(1, len(df) + 1)
             print(df)
 
-        elif user_option == 10:
+        elif user_option == 11:
             break
         else:
             print("Wrong Option!! Try Again")
