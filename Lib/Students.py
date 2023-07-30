@@ -1,4 +1,5 @@
 from datetime import datetime
+import hashlib
 import mysql.connector
 import pandas as pd
 import numpy as np
@@ -41,6 +42,24 @@ def students(registration, name, Passwd):
             print()
         elif user_option == 3:
             print()
+        elif user_option == 4:
+            print("<----------------Reset Password----------------->")
+            Old_pass = input("Enter Old Password :")
+            cur.execute("select password from login where usrname='{}';".format(registration))
+            m = cur.fetchall()
+            if hashlib.sha256(Old_pass.encode('utf-8')).hexdigest() == m[0][0]:
+                new_pass = input("Enter New Password : ")
+                check_pass = input("Re-Enter Password : ")
+                if new_pass == check_pass:
+                    cur.execute("update login set password='{}' where usrname='{}';".format(
+                        hashlib.sha256(new_pass.encode('utf-8')).hexdigest(), registration))
+                    con.commit()
+                    print("Password Change Successful")
+                    break
+                else:
+                    print("Password Not match")
+            else:
+                print("Wrong Password")
         elif user_option == 5:
             break
         else:
