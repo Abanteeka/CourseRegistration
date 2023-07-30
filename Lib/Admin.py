@@ -77,25 +77,30 @@ def admin(registration, name, PASSWD):
             # generate reg. no.
             a = str(Admission_year)
             w = str(a[2]) + str(a[3]) + str(course)
-            qry1 = "select studentID from student where studentID like '{}%';".format(Admission_year)
+            qry1 = "select studentID from student where studentID like '{}%';".format(w)
             cur.execute(qry1)
             rn = cur.fetchall()
+            # generate 21BCE10000 if !rn
             rn1 = rn[len(rn) - 1][0]
             s1 = ""
+            for i in range(5, 10):
+                s1 = s1 + rn1[i]
             k = int(s1)
             k = k + 1
             k = str(k)
-            s2 = "00000"
-            for i in range(4, 10):
-                s1 = s1 + rn1[i]
-            g = 4
-            for j in range(len(k) - 1, 0, -1):
-                s2[g] = k[j]
-                g = g-1
-            w = w + s2
-            qry2 = " insert into student values('{}','{}','{}');".format(w,student_name,Email)
+            for j in range(0, 5 - len(k)):
+                k = '0' + k
+            w = w + k
+            qry2 = " insert into student values('{}','{}','{}');".format(w, student_name, Email)
             cur.execute(qry2)
-
+            new_pass = generatePassRandom()
+            cur.execute("select MAX(slno) from login;")
+            g = cur.fetchall()
+            cur.execute("insert into login values('{}','{}','{}','{}')".format(g[0][0], w, hashlib.sha256(
+                new_pass.encode('utf-8')).hexdigest(), 'S'))
+            print("Student Added Successfully")
+            print("Registration No. : {}".format(w))
+            print("Password : {}".format(new_pass))
             con.commit()
 
         elif user_option == 2:
@@ -143,6 +148,7 @@ def admin(registration, name, PASSWD):
                     print("Password Reset Successful")
                     print("New Password is : {}".format(x))
                     print("Thank You")
+                    con.commit()
                 elif m == 3:
                     k = input("Enter Registration No. of the Faculty : ")
                     x = generatePassRandom()
