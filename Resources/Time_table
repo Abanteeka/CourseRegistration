@@ -1,0 +1,26 @@
+Theory	Start	08:30	10:05	11:40	13:15	14:50	16:25	18:00
+        End	    10:00	11:35	13:10	14:45	16:20	17:55	19:30
+
+MON	Theory	    A11	    B11	    C11	    A21	    A17	    C21	    D21
+TUE	Theory	    A12	    B12	    C12	    A22	    B17	    C22	    D22
+WED	Theory	    A13	    B13	    C13	    A23	    C17	    C23	    D23
+THU	Theory	    A14	    B14	    C14	    A24	    A27	    C24	    D24
+FRI	Theory	    A15	    B15	    C15	    A25	    C27	    C25	    D25
+SAT	Theory	    A16	    B16	    C16	    A26	    D27	    C26	    D26
+
+        MON TUE WED THU FRI SAT
+        A11 A12 A13 A14 A15 A16
+        B11 B12 B13 B14 B15 B16
+        C11 C12 C13 C14 C15 C16
+
+        A21 A22 A23 A24 A25 A26
+        A17 B17 C17 A27 C27 D27
+        C21 C22 C23 C24 C25 C26
+        D21 D22 D23 D24 D25 D26
+
+
+
+        A11 int(7), A12 int(7), A13 int(7), A14 int(7), A15 int(7), A16 int(7), B11 int(7), B12 int(7), B13 int(7), B14 int(7), B15 int(7), B16 int(7), C11 int(7), C12 int(7), C13 int(7), C14 int(7), C15 int(7), C16 int(7), A21 int(7), A22 int(7), A23 int(7), A24 int(7), A25 int(7), A26 int(7), A17 int(7), B17 int(7), C17 int(7), A27 int(7), C27 int(7), D27 int(7), C21 int(7), C22 int(7), C23 int(7), C24 int(7), C25 int(7), C26 int(7), D21 int(7), D22 int(7), D23 int(7), D24 int(7), D25 int(7), D26 int(7))
+
+
+        create table Course_Registration_data ( regno varchar(10),A11 int(7), A12 int(7), A13 int(7), A14 int(7), A15 int(7), A16 int(7), B11 int(7), B12 int(7), B13 int(7), B14 int(7), B15 int(7), B16 int(7), C11 int(7), C12 int(7), C13 int(7), C14 int(7), C15 int(7), C16 int(7), A21 int(7), A22 int(7), A23 int(7), A24 int(7), A25 int(7), A26 int(7), A17 int(7), B17 int(7), C17 int(7), A27 int(7), C27 int(7), D27 int(7), C21 int(7), C22 int(7), C23 int(7), C24 int(7), C25 int(7), C26 int(7), D21 int(7), D22 int(7), D23 int(7), D24 int(7), D25 int(7), D26 int(7))
