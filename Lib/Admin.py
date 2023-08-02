@@ -189,7 +189,7 @@ def admin(registration, name, PASSWD):
             cur.execute("select * from faculty where facultyID ='{}';".format(a))
             m = cur.fetchall()
             if m:
-                k = input("Do You want [Y/N]")
+                k = input("Do You want [y/N] : ")
                 if k == 'Y':
                     cur.execute("delete from faculty where facultyID = '{}'".format(a))
                     # students , login
