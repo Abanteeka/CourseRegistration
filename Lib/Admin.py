@@ -308,7 +308,10 @@ def admin(registration, name, PASSWD):
             print("2. Search By Joining Year")
             print("3. Search By Course Specialization")
             User_Option = int(input("Enter Your Choice :"))
-            if User_Option == 2:
+            if User_Option == 1:
+                Id = input("Enter Faculty's Registration Number")
+                cur.execute("select * from faculty where facultyID = '{}';".format(Id))
+            elif User_Option == 2:
                 J = input("Enter Joining Year : ")
                 cur.execute("select * from faculty where facultyID like '{}%';".format(J[2]+J[3]))
                 m = cur.fetchall()
