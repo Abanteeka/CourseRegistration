@@ -32,11 +32,11 @@ def admin(registration, name, PASSWD):
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.Add Student")  # done
         print("2.Add Faculty")
-        print("3.Delete Student")  # next
-        print("4.Delete Faculty")  # next
+        print("3.Delete Student")  # done
+        print("4.Delete Faculty")  # done
         print("5.Add Course")  # done
-        print("6.Delete Course")
-        print("7.Show Course")
+        print("6.Show Course")
+        print("7.Delete Course")
         print("8.Reset Password")  # done
         print("9.Show Student Lists")  # done
         print("10.Show Faculty Lists")
@@ -206,7 +206,7 @@ def admin(registration, name, PASSWD):
             ID = input("Enter Course Code :")
             Name = input("Enter Course Code :")
             Description = input("Enter Description :")
-            m = input("Confirm Upload?[Y/N] :")
+            m = input("Confirm Upload?[Y/N] : ")
             if m == 'Y' or m == 'y' or m == 'yes' or m == 'Yes' or m == 'YES':
                 cur.execute("insert into course_data values('{}','{}','{}');".format(ID, Name, Description))
                 con.commit()
@@ -214,12 +214,26 @@ def admin(registration, name, PASSWD):
             else:
                 print("Try Again")
 
-        # Delete Faculty
+        # Show Course
         elif user_option == 6:
             print()
-        # Delete Faculty
+        # Delete course
         elif user_option == 7:
-            print()
+            course_code = input("Enter course code : ")
+            cur.execute("select * from course where courseID ='{}';".format(course_code))
+            m = cur.fetchall()
+            if m:
+                k = input("Do You want [y/N]")
+                if k == 'Y':
+                    cur.execute("delete from course where courseID = '{}'".format(course_code))
+                    con.commit()
+                    print("delete successful")
+                else:
+                    print("Thank You")
+                    break
+            else:
+                print("Course Not Found")
+
         #Reset Password
         elif user_option == 8:
             while True:
@@ -268,6 +282,7 @@ def admin(registration, name, PASSWD):
                 else:
                     print("Wrong Option Try Again")
 
+        #show student list
         elif user_option == 9:
             cur.execute("select * from student;")
             m = cur.fetchall()
