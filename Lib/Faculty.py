@@ -17,6 +17,7 @@ def faculty(registration, name, pass_wd):
         print("{}           {}".format(name, registration))
         print("1.search course")
         print("2.routine")
+        print()
         print("3.Logout")
 
         user_option = int(input("Options: "))

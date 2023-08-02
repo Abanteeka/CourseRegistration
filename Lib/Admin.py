@@ -45,13 +45,11 @@ def admin(registration, name, PASSWD):
 
         user_option = int(input("Options: "))
 
+        # Add Student
         if user_option == 1:
             student_name = input("Enter Student Name : ")
             Admission_year = input("Enter Admission Year : ")
             Email = input("Enter Email Id : ")
-            # course = input
-            # -1 from last roll no. || "select registerno. from {} where registerno is like "{}{}%"".format()
-            # course = {"CSE CYBER SECURITY":"BCY","":""}
             course = " "
 
             print("---------Select Course----------")
@@ -107,8 +105,103 @@ def admin(registration, name, PASSWD):
             print("Password : {}".format(new_pass))
             con.commit()
 
+        #Add faculty
         elif user_option == 2:
-            print("Routine :")
+            faculty_name = input("Enter Faculty Name : ")
+            hiring_year = input("Enter Hiring Year : ")
+            email = input("Enter Email Id : ")
+            course = " "
+
+            print("---------Faculty Course----------")
+            print("1.CSE Core")
+            print("2.CSE Cyber Security and Digital Forensics")
+            print("3.CSE Aiml")
+            print("4.CSE Gaming")
+            print("5.CSE Health Informatics")
+
+            User_Input1 = int(input("Enter Your Choice :"))
+            if User_Input1 == 1:
+                course = "BCE"
+            elif User_Input1 == 2:
+                course = "BCY"
+            elif User_Input1 == 3:
+                course = "BAI"
+            elif User_Input1 == 4:
+                course = "BCG"
+            elif User_Input1 == 5:
+                course = "BHI"
+            else:
+                print("invalid Option")
+
+            # generate reg. no.
+            a = str(hiring_year)
+            w = str(a[2]) + str(a[3]) + str(course)
+            qry1 = "select facultyID from faculty where facultyID like '{}%';".format(w)
+            cur.execute(qry1)
+            rn = cur.fetchall()
+            # generate 21FCY10000 if !rn
+            if rn:
+                rn1 = rn[len(rn) - 1][0]
+            else:
+                rn1 = w + "10000"
+            s1 = ""
+            for i in range(5, 10):
+                s1 = s1 + rn1[i]
+            k = int(s1)
+            k = k + 1
+            k = str(k)
+            for j in range(0, 5 - len(k)):
+                k = '0' + k
+            w = w + k
+            qry2 = " insert into faculty values('{}','{}','{}');".format(w, faculty_name, email)
+            cur.execute(qry2)
+            new_pass = generatePassRandom()
+            cur.execute("select MAX(slno) from login;")
+            g = cur.fetchall()
+            cur.execute("insert into login values('{}','{}','{}','{}')".format(g[0][0], w, hashlib.sha256(
+                new_pass.encode('utf-8')).hexdigest(), 'S'))
+            print("Faculty Added Successfully")
+            print("Registration No. : {}".format(w))
+            print("Password : {}".format(new_pass))
+            con.commit()
+        #Delete Student
+        elif user_option == 3:
+            a = input("Enter Reg :")
+            cur.execute("select * from student where studentID ='{}';".format(a))
+            m = cur.fetchall()
+            if m:
+                k = input("Do You want [Y/N]")
+                if k == 'Y':
+                    cur.execute("delete from student where studentID = '{}'".format(a))
+                    # students , login
+                    cur.execute("delete from login where usrname = '{}'".format(a))
+                    con.commit()
+                    print("delete successful")
+                else:
+                    print("Thank You")
+                    break
+            else:
+                print("User Not Found")
+
+        #Delete Faculty
+        elif user_option == 4:
+            a = input("Enter Reg :")
+            cur.execute("select * from faculty where facultyID ='{}';".format(a))
+            m = cur.fetchall()
+            if m:
+                k = input("Do You want [Y/N]")
+                if k == 'Y':
+                    cur.execute("delete from faculty where facultyID = '{}'".format(a))
+                    # students , login
+                    cur.execute("delete from login where usrname = '{}'".format(a))
+                    con.commit()
+                    print("delete successful")
+                else:
+                    print("Thank You")
+                    break
+            else:
+                print("User Not Found")
+        #Add Course
         elif user_option == 5:
             ID = input("Enter Course Code :")
             Name = input("Enter Course Code :")
@@ -120,6 +213,14 @@ def admin(registration, name, PASSWD):
                 print("Data update Successful")
             else:
                 print("Try Again")
+
+        # Delete Faculty
+        elif user_option == 6:
+            print()
+        # Delete Faculty
+        elif user_option == 7:
+            print()
+        #Reset Password
         elif user_option == 8:
             while True:
                 print("1.Admin Password")
@@ -178,6 +279,13 @@ def admin(registration, name, PASSWD):
             df.index = np.arange(1, len(df) + 1)
             print(df)
 
+        #Show Faculty Lists
+        elif user_option == 10:
+            print()
+        #Assign Course
+        elif user_option == 11:
+            print()
+        #logout
         elif user_option == 12:
             break
         else:
