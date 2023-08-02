@@ -121,15 +121,15 @@ def admin(registration, name, PASSWD):
 
             User_Input1 = int(input("Enter Your Choice :"))
             if User_Input1 == 1:
-                course = "BCE"
+                course = "FCE"
             elif User_Input1 == 2:
-                course = "BCY"
+                course = "FCY"
             elif User_Input1 == 3:
-                course = "BAI"
+                course = "FAI"
             elif User_Input1 == 4:
-                course = "BCG"
+                course = "FCG"
             elif User_Input1 == 5:
-                course = "BHI"
+                course = "FHI"
             else:
                 print("invalid Option")
 
