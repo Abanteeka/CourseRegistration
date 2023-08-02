@@ -346,13 +346,15 @@ def admin(registration, name, PASSWD):
                 else:
                     cur.execute("select * from faculty where facultyID like '%{}%';".format(category))
                     m = cur.fetchall()
-                    df = pd.DataFrame(m)
-                    df.rename(columns={0: 'Registration Number'}, inplace=True)
-                    df.rename(columns={1: 'Name'}, inplace=True)
-                    df.rename(columns={2: 'Email ID'}, inplace=True)
-                    df.index = np.arange(1, len(df) + 1)
-                    print(df)
-
+                    if m:
+                        df = pd.DataFrame(m)
+                        df.rename(columns={0: 'Registration Number'}, inplace=True)
+                        df.rename(columns={1: 'Name'}, inplace=True)
+                        df.rename(columns={2: 'Email ID'}, inplace=True)
+                        df.index = np.arange(1, len(df) + 1)
+                        print(df)
+                    else:
+                        print("No Course found")
         #Assign Course
         elif user_option == 11:
             print()
