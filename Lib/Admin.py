@@ -31,15 +31,15 @@ def admin(registration, name, PASSWD):
     while True:
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.Add Student")  # done
-        print("2.Add Faculty")   #done
+        print("2.Add Faculty")   # done
         print("3.Delete Student")  # done
         print("4.Delete Faculty")  # done
         print("5.Add Course")  # done
-        print("6.Show Course")
-        print("7.Delete Course") #done
+        print("6.Show Course")  # done
+        print("7.Delete Course")  # done
         print("8.Reset Password")  # done
         print("9.Show Student Lists")  # done
-        print("10.Show Faculty Lists") #done
+        print("10.Show Faculty Lists")  # done
         print("11.Assign Course")
         print("12.Logout")
 
@@ -216,15 +216,32 @@ def admin(registration, name, PASSWD):
 
         # Show Course
         elif user_option == 6:   #show all subjects and also can search by putting course code
-            course_code = input("Enter course code : ")
-            cur.execute("select * from course where courseID = '{}';".format(course_code))
-            m = cur.fetchall()
-            df = pd.DataFrame(m)
-            df.rename(columns={0: 'Course Id'}, inplace=True)
-            df.rename(columns={1: 'Course Name'}, inplace=True)
-            df.rename(columns={2: 'Description'}, inplace=True)
-            df.index = np.arange(1, len(df) + 1)
-            print(df)
+            print("---------Course Search----------")
+            print("1. Search By Course ID")
+            print("2. Search By Course Name")
+            #print("3. Search By Course Specialization")
+            User_Option = int(input("Enter Your Choice :"))
+            if User_Option == 1:
+                course_code = input("Enter course code : ")
+                cur.execute("select * from course where courseID = '{}';".format(course_code))
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Course Id'}, inplace=True)
+                df.rename(columns={1: 'Course Name'}, inplace=True)
+                df.rename(columns={2: 'Description'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+            elif User_Option == 2:
+                Cname = input("Enter Course Name ")
+                cur.execute("select * from course where course_name = '{}';".format(Cname))
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Course Id'}, inplace=True)
+                df.rename(columns={1: 'Course Name'}, inplace=True)
+                df.rename(columns={2: 'Description'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+
         # Delete course
         elif user_option == 7:
             course_code = input("Enter course code : ")
