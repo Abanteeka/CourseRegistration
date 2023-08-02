@@ -31,12 +31,12 @@ def admin(registration, name, PASSWD):
     while True:
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.Add Student")  # done
-        print("2.Add Faculty")
+        print("2.Add Faculty")   #done
         print("3.Delete Student")  # done
         print("4.Delete Faculty")  # done
         print("5.Add Course")  # done
         print("6.Show Course")
-        print("7.Delete Course")
+        print("7.Delete Course") #done
         print("8.Reset Password")  # done
         print("9.Show Student Lists")  # done
         print("10.Show Faculty Lists")
@@ -112,7 +112,7 @@ def admin(registration, name, PASSWD):
             email = input("Enter Email Id : ")
             course = " "
 
-            print("---------Faculty Course----------")
+            print("---------Faculty Specialization----------")
             print("1.CSE Core")
             print("2.CSE Cyber Security and Digital Forensics")
             print("3.CSE Aiml")
@@ -215,8 +215,16 @@ def admin(registration, name, PASSWD):
                 print("Try Again")
 
         # Show Course
-        elif user_option == 6:
-            print()
+        elif user_option == 6:   #show all subjects and also can search by putting course code
+            course_code = input("Enter course code : ")
+            cur.execute("select * from course where courseID = '{}';".format(course_code))
+            m = cur.fetchall()
+            df = pd.DataFrame(m)
+            df.rename(columns={0: 'Course Id'}, inplace=True)
+            df.rename(columns={1: 'Course Name'}, inplace=True)
+            df.rename(columns={2: 'Description'}, inplace=True)
+            df.index = np.arange(1, len(df) + 1)
+            print(df)
         # Delete course
         elif user_option == 7:
             course_code = input("Enter course code : ")
@@ -290,13 +298,61 @@ def admin(registration, name, PASSWD):
             df.rename(columns={0: 'Registration Number'}, inplace=True)
             df.rename(columns={1: 'Name'}, inplace=True)
             df.rename(columns={2: 'Email ID'}, inplace=True)
-            df.rename(columns={3: 'Password'}, inplace=True)  # delete the coloum
             df.index = np.arange(1, len(df) + 1)
             print(df)
 
         #Show Faculty Lists
         elif user_option == 10:
-            print()
+            print("---------Faculty Search----------")
+            print("1. Search By Faculty ID")
+            print("2. Search By Joining Year")
+            print("3. Search By Course Specialization")
+            User_Option = int(input("Enter Your Choice :"))
+            if User_Option == 2:
+                J = input("Enter Joining Year : ")
+                cur.execute("select * from faculty where facultyID like '{}%';".format(J[2]+J[3]))
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Registration Number'}, inplace=True)
+                df.rename(columns={1: 'Name'}, inplace=True)
+                df.rename(columns={2: 'Email ID'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+
+            elif User_Option == 3:
+                print("---------Faculty Specialization----------")
+                print("1.CSE Core")
+                print("2.CSE Cyber Security and Digital Forensics")
+                print("3.CSE Aiml")
+                print("4.CSE Gaming")
+                print("5.CSE Health Informatics")
+                category = " "
+                User_Input1 = int(input("Enter Your Choice :"))
+                if User_Input1 == 1:
+                    category = "FCE"
+                elif User_Input1 == 2:
+                    category = "FCY"
+                elif User_Input1 == 3:
+                    category = "FAI"
+                elif User_Input1 == 4:
+                    category = "FCG"
+                elif User_Input1 == 5:
+                    category = "FHI"
+                else:
+                    print("invalid Option")
+                    category = "no"
+                if category == "no":
+                    print("wrong option")
+                else:
+                    cur.execute("select * from faculty where facultyID like '%{}%';".format(category))
+                    m = cur.fetchall()
+                    df = pd.DataFrame(m)
+                    df.rename(columns={0: 'Registration Number'}, inplace=True)
+                    df.rename(columns={1: 'Name'}, inplace=True)
+                    df.rename(columns={2: 'Email ID'}, inplace=True)
+                    df.index = np.arange(1, len(df) + 1)
+                    print(df)
+
         #Assign Course
         elif user_option == 11:
             print()
