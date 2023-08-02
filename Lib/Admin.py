@@ -39,7 +39,7 @@ def admin(registration, name, PASSWD):
         print("7.Delete Course") #done
         print("8.Reset Password")  # done
         print("9.Show Student Lists")  # done
-        print("10.Show Faculty Lists")
+        print("10.Show Faculty Lists") #done
         print("11.Assign Course")
         print("12.Logout")
 
@@ -292,14 +292,63 @@ def admin(registration, name, PASSWD):
 
         #show student list
         elif user_option == 9:
-            cur.execute("select * from student;")
-            m = cur.fetchall()
-            df = pd.DataFrame(m)
-            df.rename(columns={0: 'Registration Number'}, inplace=True)
-            df.rename(columns={1: 'Name'}, inplace=True)
-            df.rename(columns={2: 'Email ID'}, inplace=True)
-            df.index = np.arange(1, len(df) + 1)
-            print(df)
+            print("---------Student Search----------")
+            print("1. Search By Student ID")
+            print("2. Search By Admission Year")
+            print("3. Search By Course Specialization")
+            User_Option = int(input("Enter Your Choice :"))
+            if User_Option == 1:
+                Id = input("Enter Student's Registration Number")
+                cur.execute("select * from student where studentID = '{}';".format(Id))
+                cur.fetchall()
+
+            elif User_Option == 2:
+                J = input("Enter Admission Year : ")
+                cur.execute("select * from student where studentID like '{}%';".format(J[2]+J[3]))
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Registration Number'}, inplace=True)
+                df.rename(columns={1: 'Name'}, inplace=True)
+                df.rename(columns={2: 'Email ID'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+
+            elif User_Option == 3:
+                print("---------Student Specialization----------")
+                print("1.CSE Core")
+                print("2.CSE Cyber Security and Digital Forensics")
+                print("3.CSE Aiml")
+                print("4.CSE Gaming")
+                print("5.CSE Health Informatics")
+                category = " "
+                User_Input1 = int(input("Enter Your Choice :"))
+                if User_Input1 == 1:
+                    category = "BCE"
+                elif User_Input1 == 2:
+                    category = "BCY"
+                elif User_Input1 == 3:
+                    category = "BAI"
+                elif User_Input1 == 4:
+                    category = "BCG"
+                elif User_Input1 == 5:
+                    category = "BHI"
+                else:
+                    print("invalid Option")
+                    category = "no"
+                if category == "no":
+                    print("wrong option")
+                else:
+                    cur.execute("select * from student where studentID like '%{}%';".format(category))
+                    m = cur.fetchall()
+                    if m:
+                        df = pd.DataFrame(m)
+                        df.rename(columns={0: 'Registration Number'}, inplace=True)
+                        df.rename(columns={1: 'Name'}, inplace=True)
+                        df.rename(columns={2: 'Email ID'}, inplace=True)
+                        df.index = np.arange(1, len(df) + 1)
+                        print(df)
+                    else:
+                        print("No Course found")
 
         #Show Faculty Lists
         elif user_option == 10:
@@ -311,6 +360,8 @@ def admin(registration, name, PASSWD):
             if User_Option == 1:
                 Id = input("Enter Faculty's Registration Number")
                 cur.execute("select * from faculty where facultyID = '{}';".format(Id))
+                cur.fetchall()
+
             elif User_Option == 2:
                 J = input("Enter Joining Year : ")
                 cur.execute("select * from faculty where facultyID like '{}%';".format(J[2]+J[3]))
