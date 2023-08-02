@@ -24,3 +24,8 @@ SAT	Theory	    A16	    B16	    C16	    A26	    D27	    C26	    D26
 
 
         create table Course_Registration_data ( regno varchar(10),A11 int(7), A12 int(7), A13 int(7), A14 int(7), A15 int(7), A16 int(7), B11 int(7), B12 int(7), B13 int(7), B14 int(7), B15 int(7), B16 int(7), C11 int(7), C12 int(7), C13 int(7), C14 int(7), C15 int(7), C16 int(7), A21 int(7), A22 int(7), A23 int(7), A24 int(7), A25 int(7), A26 int(7), A17 int(7), B17 int(7), C17 int(7), A27 int(7), C27 int(7), D27 int(7), C21 int(7), C22 int(7), C23 int(7), C24 int(7), C25 int(7), C26 int(7), D21 int(7), D22 int(7), D23 int(7), D24 int(7), D25 int(7), D26 int(7))
+
+
+
+
+        Student will select course >> faclulty will select their own slots >> students will get to know after course registration
