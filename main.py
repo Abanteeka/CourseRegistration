@@ -70,6 +70,7 @@ def main():
                 choice = int(input("Enter Your Choice :"))
                 print()
                 if choice == 1:
+                    # create bydefault password
                     u = input("Enter Username :")
                     # don't show the password
                     p = input("Enter Password :")

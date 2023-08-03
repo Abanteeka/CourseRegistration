@@ -23,7 +23,7 @@ SAT	Theory	    A16	    B16	    C16	    A26	    D27	    C26	    D26
         A11 int(7), A12 int(7), A13 int(7), A14 int(7), A15 int(7), A16 int(7), B11 int(7), B12 int(7), B13 int(7), B14 int(7), B15 int(7), B16 int(7), C11 int(7), C12 int(7), C13 int(7), C14 int(7), C15 int(7), C16 int(7), A21 int(7), A22 int(7), A23 int(7), A24 int(7), A25 int(7), A26 int(7), A17 int(7), B17 int(7), C17 int(7), A27 int(7), C27 int(7), D27 int(7), C21 int(7), C22 int(7), C23 int(7), C24 int(7), C25 int(7), C26 int(7), D21 int(7), D22 int(7), D23 int(7), D24 int(7), D25 int(7), D26 int(7))
 
 
-        create table Course_Registration_data ( regno varchar(10),A11 int(7), A12 int(7), A13 int(7), A14 int(7), A15 int(7), A16 int(7), B11 int(7), B12 int(7), B13 int(7), B14 int(7), B15 int(7), B16 int(7), C11 int(7), C12 int(7), C13 int(7), C14 int(7), C15 int(7), C16 int(7), A21 int(7), A22 int(7), A23 int(7), A24 int(7), A25 int(7), A26 int(7), A17 int(7), B17 int(7), C17 int(7), A27 int(7), C27 int(7), D27 int(7), C21 int(7), C22 int(7), C23 int(7), C24 int(7), C25 int(7), C26 int(7), D21 int(7), D22 int(7), D23 int(7), D24 int(7), D25 int(7), D26 int(7))
+        create table Course_Registration_data ( regno varchar(10),A11 int(7), A12 int(7), A13 int(7), A14 int(7), A15 int(7), A16 int(7), B11 int(7), B12 int(7), B13 int(7), B14 int(7), B15 int(7), B16 int(7), C11 int(7), C12 int(7), C13 int(7), C14 int(7), C15 int(7), C16 int(7), D11 int(7), D12 int(7), D13 int(7), D14 int(7), D15 int(7), D16 int(7), E11 int(7), E12 int(7), E13 int(7), E14 int(7), E15 int(7), E16 int(7), F11 int(7), F12 int(7), F13 int(7), F14 int(7), F15 int(7), F16 int(7), G11 int(7), G12 int(7), G13 int(7), G14 int(7), G15 int(7), G16 int(7));
 
 
 
