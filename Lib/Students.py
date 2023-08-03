@@ -59,6 +59,13 @@ def students(registration, name, Passwd):
                 if k == 1:
                     Course_print()
                 elif k == 2:
+                    cur.execute("select * from Course_Registration_data where regno='{}';".format(registration))
+                    h = cur.fetchall()
+                    if h:
+                        print("Already Course Set!!")
+                        print("If you wish to change please reset the time table")
+                        print("Thank You")
+                        break
                     Mon = ["A11", "B11", "C11", "D11", "E11", "F11", "G11"]
                     Tue = ["A12", "B12", "C12", "D12", "E12", "F12", "G12"]
                     Wed = ["A13", "B13", "C13", "D13", "E13", "F13", "G13"]
@@ -184,7 +191,65 @@ def students(registration, name, Passwd):
                     print("Invalid Option!! Try Again")
 
         elif user_option == 3:
-            print()
+            try:
+                cur.execute("select * from Course_Registration_data where regno='{}';".format(registration))
+                h = cur.fetchall()
+                if h:
+                    m = input("Confirm Reset Time Table?[y/N]")
+                    if m == 'Y' or m == 'y':
+                        cur.execute("delete from Course_Registration_data where regno='{}';".format(registration))
+                        con.commit()
+                        print("Reset Successful")
+                    else:
+                        print("Thank You")
+                else:
+                    print("No record Found")
+            except mysql.connector.Error as error:
+                print("Course Not Registered")
+        elif user_option == 4:
+            # print Routine
+            try:
+                cur.execute("select * from Course_Registration_data where regno='{}';".format(registration))
+                h = cur.fetchall()
+                if not h:
+                    print("Course Not Registered")
+                    break
+                Mon = [h[0][1], h[0][7], h[0][13], h[0][19], h[0][25], h[0][31], h[0][37]]
+                Tue = [h[0][2], h[0][8], h[0][14], h[0][20], h[0][26], h[0][32], h[0][38]]
+                Wed = [h[0][3], h[0][9], h[0][15], h[0][21], h[0][27], h[0][33], h[0][39]]
+                Thu = [h[0][4], h[0][10], h[0][16], h[0][22], h[0][28], h[0][34], h[0][40]]
+                Fri = [h[0][5], h[0][11], h[0][17], h[0][23], h[0][29], h[0][35], h[0][41]]
+                Sat = [h[0][6], h[0][12], h[0][18], h[0][24], h[0][30], h[0][36], h[0][42]]
+
+                print("Course Selected :")
+                print(
+                    "    {:^7}	{:7}{:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        "Theory", "Start", "08:30", "10:05", "11:40", "13:15", "14:50", "16:25", "18:00"))
+                print(
+                    "         	{:7}{:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        "End", "10:00", "11:35", "13:10", "14:45", "16:20", "17:55", "19:30"))
+                print("-" * 121)
+                print(
+                    "MON	Theory	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        Mon[0], Mon[1], Mon[2], Mon[3], Mon[4], Mon[5], Mon[6]))
+                print(
+                    "TUE	Theory	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        Tue[0], Tue[1], Tue[2], Tue[3], Tue[4], Tue[5], Tue[6]))
+                print(
+                    "WED	Theory	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        Wed[0], Wed[1], Wed[2], Wed[3], Wed[4], Wed[5], Wed[6]))
+                print(
+                    "THU	Theory	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        Thu[0], Thu[1], Thu[2], Thu[3], Thu[4], Thu[5], Thu[6]))
+                print(
+                    "FRI	Theory	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        Fri[0], Fri[1], Fri[2], Fri[3], Fri[4], Fri[5], Fri[6]))
+                print(
+                    "SAT	Theory	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
+                        Sat[0], Sat[1], Sat[2], Sat[3], Sat[4], Sat[5], Sat[6]))
+                print("-" * 121)
+            except mysql.connector.Error as error:
+                print("Course Not Registered")
         elif user_option == 5:
             print("<----------------Reset Password----------------->")
             Old_pass = input("Enter Old Password :")
