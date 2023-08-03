@@ -52,6 +52,7 @@ def admin(registration, name, PASSWD):
             Email = input("Enter Email Id : ")
             course = " "
 
+            print()
             print("---------Select Course----------")
             print("1.CSE Core")
             print("2.CSE Cyber Security and Digital Forensics")
@@ -111,7 +112,7 @@ def admin(registration, name, PASSWD):
             hiring_year = input("Enter Hiring Year : ")
             email = input("Enter Email Id : ")
             course = " "
-
+            print()
             print("---------Faculty Specialization----------")
             print("1.CSE Core")
             print("2.CSE Cyber Security and Digital Forensics")
@@ -215,11 +216,10 @@ def admin(registration, name, PASSWD):
                 print("Try Again")
 
         # Show Course
-        elif user_option == 6:   #show all subjects and also can search by putting course code
+        elif user_option == 6:
             print("---------Course Search----------")
             print("1. Search By Course ID")
             print("2. Search By Course Name")
-            #print("3. Search By Course Specialization")
             User_Option = int(input("Enter Your Choice :"))
             if User_Option == 1:
                 course_code = input("Enter course code : ")
