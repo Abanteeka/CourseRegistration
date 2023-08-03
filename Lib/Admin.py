@@ -160,7 +160,7 @@ def admin(registration, name, PASSWD):
             cur.execute("select MAX(slno) from login;")
             g = cur.fetchall()
             cur.execute("insert into login values('{}','{}','{}','{}')".format(g[0][0], w, hashlib.sha256(
-                new_pass.encode('utf-8')).hexdigest(), 'S'))
+                new_pass.encode('utf-8')).hexdigest(), 'F'))
             print("Faculty Added Successfully")
             print("Registration No. : {}".format(w))
             print("Password : {}".format(new_pass))
