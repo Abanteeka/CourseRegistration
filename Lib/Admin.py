@@ -250,7 +250,8 @@ def admin(registration, name, PASSWD):
                 df.rename(columns={2: 'Description'}, inplace=True)
                 df.index = np.arange(1, len(df) + 1)
                 print(df)
-
+            else:
+                print("Invalid Option,ty again!!")
         # Delete course
         elif user_option == 7:
             course_code = input("Enter course code : ")
