@@ -70,10 +70,11 @@ def main():
                 choice = int(input("Enter Your Choice :"))
                 print()
                 if choice == 1:
-                    # create bydefault password
+                    # create by-default password
+                    print("Registration Number should be (Adnission year)+(Course Category)+(Serial No.) e.g. 21BCY10001")
                     u = input("Enter Username :")
                     # don't show the password
-                    p = input("Enter Password :")
+                    p = input("Enter Password : ")
                     if passwd_check(p, u):
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))
                         m = cur.fetchall()

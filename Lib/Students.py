@@ -28,18 +28,24 @@ def students(registration, name, Passwd):
         print("5.Reset Password")
         print("6.Logout")
         print()
+
+        #search course
         user_option = int(input("Options: "))
         if user_option == 1:
             course_code = input("Enter Course Code: ")
             cur.execute("select * from course_data where course_id = '{}';".format(course_code))
             m = cur.fetchall()
-            df = pd.DataFrame(m)
-            df.rename(columns={0: 'Course Id'}, inplace=True)
-            df.rename(columns={1: 'Course Name'}, inplace=True)
-            df.rename(columns={2: 'Description'}, inplace=True)
-            df.index = np.arange(1, len(df) + 1)
-            print(df)
+            if m:
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Course Id'}, inplace=True)
+                df.rename(columns={1: 'Course Name'}, inplace=True)
+                df.rename(columns={2: 'Description'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+            else:
+                print("No course is available")
 
+        # select course
         elif user_option == 2:
             def Course_print():
                 cur.execute("Select * from course_data;")
@@ -75,7 +81,7 @@ def students(registration, name, Passwd):
                     unused_slot = ["A1", "B1", "C1", "D1", "E1", "F1", "G1"]
 
                     def Print_time_table():
-                        print("Course Selected :")
+                        print("Course Selected : ")
                         print(
                             "    {:^7}	{:7}{:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}	      {:^7}".format(
                                 "Theory", "Start", "08:30", "10:05", "11:40", "13:15", "14:50", "16:25", "18:00"))
@@ -269,6 +275,7 @@ def students(registration, name, Passwd):
             else:
                 print("Wrong Password")
         elif user_option == 6:
+            print("Logout Successfully")
             break
         else:
             print("Wrong Option!! Try Again")
