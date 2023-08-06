@@ -7,6 +7,6 @@ create table admin(aid int,name varchar(30),email varchar(30));
 create table student(studentID char(10),name varchar(100),email varchar(100));
 create table faculty(facultyID char(10),name varchar(100),email varchar(100));
 create table course_data(course_id char(7),course_name varchar(30),description varchar(100));
-insert into login values(1,"admin","5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8");
+insert into login values(1,"admin","5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",'A');
 # the password is SHA256 for "password"
 create table Course_Registration_data ( regno varchar(10),A11 char(7), A12 char(7), A13 char(7), A14 char(7), A15 char(7), A16 char(7), B11 char(7), B12 char(7), B13 char(7), B14 char(7), B15 char(7), B16 char(7), C11 char(7), C12 char(7), C13 char(7), C14 char(7), C15 char(7), C16 char(7), D11 char(7), D12 char(7), D13 char(7), D14 char(7), D15 char(7), D16 char(7), E11 char(7), E12 char(7), E13 char(7), E14 char(7), E15 char(7), E16 char(7), F11 char(7), F12 char(7), F13 char(7), F14 char(7), F15 char(7), F16 char(7), G11 char(7), G12 char(7), G13 char(7), G14 char(7), G15 char(7), G16 char(7));

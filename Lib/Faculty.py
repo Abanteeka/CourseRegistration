@@ -4,6 +4,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
+
 # access course table
 # login
 
@@ -12,10 +13,11 @@ def faculty(registration, name, pass_wd):
     con = mysql.connector.connect(host="localhost", user="root", passwd=pass_wd, database="courseregistration")
     cur = con.cursor()
     a = datetime.now()
+    print("%s       %s:%s" % (a.date(), a.hour, a.minute))
+    print("{}           {}".format(name, registration))
     while True:
         print("")
-        print("%s       %s:%s" % (a.date(), a.hour, a.minute))
-        print("{}           {}".format(name, registration))
+        print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
         print("1.search course")
         print("2.routine")
         print("3.Reset Password")
@@ -127,6 +129,8 @@ def faculty(registration, name, pass_wd):
                     print("-" * 121)
                 except mysql.connector.Error as error:
                     print("Course Not Registered")
+            else:
+                print("Course Not found!!")
         elif user_option == 3:
             print("<----------------Reset Password----------------->")
             Old_pass = input("Enter Old Password :")
