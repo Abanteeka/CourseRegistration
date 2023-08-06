@@ -40,8 +40,7 @@ def admin(registration, name, PASSWD):
         print("8.Reset Password")
         print("9.Show Student Lists")
         print("10.Show Faculty Lists")
-        print("11.Assign Course")
-        print("12.Logout")
+        print("11.Logout")
 
         user_option = int(input("Options: "))
 
@@ -220,6 +219,7 @@ def admin(registration, name, PASSWD):
             print("---------Course Search----------")
             print("1. Search By Course ID")
             print("2. Search By Course Name")
+            print("3. All Course")
             User_Option = int(input("Enter Your Choice :"))
             if User_Option == 1:
                 course_code = input("Enter course code : ")
@@ -234,6 +234,15 @@ def admin(registration, name, PASSWD):
             elif User_Option == 2:
                 Cname = input("Enter Course Name : ")
                 cur.execute("select * from course_data where course_name = '{}';".format(Cname))
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Course Id'}, inplace=True)
+                df.rename(columns={1: 'Course Name'}, inplace=True)
+                df.rename(columns={2: 'Description'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+            elif User_Option == 3:
+                cur.execute("select * from course_data;")
                 m = cur.fetchall()
                 df = pd.DataFrame(m)
                 df.rename(columns={0: 'Course Id'}, inplace=True)
@@ -313,6 +322,7 @@ def admin(registration, name, PASSWD):
             print("1. Search By Student ID")
             print("2. Search By Admission Year")
             print("3. Search By Course Specialization")
+            print("4. All Students")
             User_Option = int(input("Enter Your Choice : "))
             if User_Option == 1:
                 Id = input("Enter Student's Registration Number : ")
@@ -341,7 +351,7 @@ def admin(registration, name, PASSWD):
                     print(df)
                 else:
                     print("No Student Is Available")
-                        # if given registration year is not available
+
             elif User_Option == 3:
                 print("---------Student Specialization----------")
                 print("1.CSE Core")
@@ -378,6 +388,16 @@ def admin(registration, name, PASSWD):
                         print(df)
                     else:
                         print("No student is found in this course")
+            elif User_Option == 4:
+                cur.execute("select * from student;")
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Registration Number'}, inplace=True)
+                df.rename(columns={1: 'Name'}, inplace=True)
+                df.rename(columns={2: 'Email ID'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+
 
         #Show Faculty Lists
         elif user_option == 10:
@@ -385,6 +405,7 @@ def admin(registration, name, PASSWD):
             print("1. Search By Faculty ID")
             print("2. Search By Joining Year")
             print("3. Search By Course Specialization")
+            print("4. All Faculty")
             User_Option = int(input("Enter Your Choice : "))
             if User_Option == 1:
                 Id = input("Enter Faculty's Registration Number : ")
@@ -450,11 +471,18 @@ def admin(registration, name, PASSWD):
                         print(df)
                     else:
                         print("No Course found")
-        #Assign Course
-        elif user_option == 11:
-            print()
+            elif User_Option == 4:
+                cur.execute("select * from faculty")
+                m = cur.fetchall()
+                df = pd.DataFrame(m)
+                df.rename(columns={0: 'Registration Number'}, inplace=True)
+                df.rename(columns={1: 'Name'}, inplace=True)
+                df.rename(columns={2: 'Email ID'}, inplace=True)
+                df.index = np.arange(1, len(df) + 1)
+                print(df)
+
         #logout
-        elif user_option == 12:
+        elif user_option == 11:
             break
         else:
             print("Wrong Option!! Try Again")

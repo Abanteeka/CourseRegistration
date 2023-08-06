@@ -70,8 +70,6 @@ def main():
                 choice = int(input("Enter Your Choice :"))
                 print()
                 if choice == 1:
-                    # create by-default password
-                    print("Registration Number should be (Adnission year)+(Course Category)+(Serial No.) e.g. 21BCY10001")
                     u = input("Enter Username :")
                     # don't show the password
                     p = input("Enter Password : ")
