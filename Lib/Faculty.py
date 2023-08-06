@@ -34,6 +34,7 @@ def faculty(registration, name, pass_wd):
             print(df)
         elif user_option == 2:
             print("Routine :")
+            # slot from student
         elif user_option == 3:
             print("<----------------Reset Password----------------->")
             Old_pass = input("Enter Old Password :")
