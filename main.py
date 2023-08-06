@@ -74,7 +74,7 @@ def main():
                     print("Registration Number should be (Adnission year)+(Course Category)+(Serial No.) e.g. 21BCY10001")
                     u = input("Enter Username :")
                     # don't show the password
-                    p = input("Enter Password :")
+                    p = input("Enter Password : ")
                     if passwd_check(p, u):
                         cur.execute("select privilage from login where usrname='{}';".format(str(u)))
                         m = cur.fetchall()
@@ -102,8 +102,6 @@ def main():
                     else:
                         print("try again")
                 elif choice == 3:
-                    # print the registration format
-                    print("Registration Number should be (Joining year)+(Course Category)+(Serial No.) e.g. 19FCY10001")
                     u = input("Enter Registration Number :")
                     p = input("Enter Password :")
                     if passwd_check(p, u):

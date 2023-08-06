@@ -30,16 +30,16 @@ def admin(registration, name, PASSWD):
 
     while True:
         print("><><><><><><><><><><><><><><><><><><><><>< OPTIONS ><><><><><><><><><><><><><><><><><><><><><")
-        print("1.Add Student")  # in working state
-        print("2.Add Faculty")   # in working state
-        print("3.Delete Student")  # in working state
-        print("4.Delete Faculty")  # in working state
-        print("5.Add Course")  # in working state
-        print("6.Show Course")  # in working state
-        print("7.Delete Course")  # in working state
-        print("8.Reset Password")  # in working state
-        print("9.Show Student Lists")  # in working state
-        print("10.Show Faculty Lists")  # in working state
+        print("1.Add Student")
+        print("2.Add Faculty")
+        print("3.Delete Student")
+        print("4.Delete Faculty")
+        print("5.Add Course")
+        print("6.Show Course")
+        print("7.Delete Course")
+        print("8.Reset Password")
+        print("9.Show Student Lists")
+        print("10.Show Faculty Lists")
         print("11.Assign Course")
         print("12.Logout")
 
