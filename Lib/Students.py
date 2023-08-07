@@ -185,7 +185,21 @@ def students(registration, name, Passwd):
                                     print()
                                     slot = input("Enter The Slot : ")
                                     if slot in unused_slot:
-                                        index = unused_slot.index(slot)
+                                        if slot == 'A1':
+                                            index = 0
+                                        elif slot == 'B1':
+                                            index = 1
+                                        elif slot == 'C1':
+                                            index = 2
+                                        elif slot == 'D1':
+                                            index = 3
+                                        elif slot == 'E1':
+                                            index = 4
+                                        elif slot == 'F1':
+                                            index = 5
+                                        elif slot == 'G1':
+                                            index = 6
+
                                         Mon[index] = Tue[index] = Wed[index] = Thu[index] = Fri[index] = Sat[
                                             index] = course_code
                                         unused_slot.remove(slot)
