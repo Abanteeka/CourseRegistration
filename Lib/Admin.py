@@ -259,7 +259,7 @@ def admin(registration, name, PASSWD):
             m = cur.fetchall()
             if m:
                 k = input("Do You want [y/N]")
-                if k == 'Y':
+                if k == 'Y' or 'y':
                     cur.execute("delete from course_data where course_id = '{}'".format(course_code))
                     con.commit()
                     print("delete successful")
