@@ -169,6 +169,7 @@ def faculty(registration, name, pass_wd):
                 new_pass = input("Enter New Password : ")
                 check_pass = input("Re-Enter Password : ")
                 if new_pass == check_pass:
+                    System.out.println();
                     cur.execute("update login set password='{}' where usrname='{}';".format(
                         hashlib.sha256(new_pass.encode('utf-8')).hexdigest(), registration))
                     con.commit()
